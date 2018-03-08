@@ -11,8 +11,6 @@ function print_admin_field() {
 	 */
 	global $product_object; // @see https://docs.woocommerce.com/wc-apidocs/source-class-WC_Meta_Box_Product_Data.html#42
 
-	//	@todo: Make sure this is a Simple product.
-	
 	if( $product_object->get_type() == 'simple' ) {
 	
 
@@ -49,7 +47,6 @@ add_action( 'woocommerce_process_product_meta_simple', 'JB_SIF\save' );
 function print_output() {
 
 	global $product;
-		//		get_post_meta( $product->get_id(), '_sif_ships_in', true )
 	$ships_in = get_post_meta( $product->get_id(), '_sif_ships_in', true );
 
 
