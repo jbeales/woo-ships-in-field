@@ -1,7 +1,7 @@
 <?php
 
 
-namespace JB_SIF;
+namespace JB\SIF;
 
 
 function print_admin_field() {
@@ -18,7 +18,7 @@ function print_admin_field() {
 			'id' 			=> 'sif_ships_in',
 			'label'			=> __('Ships In', 'jb-sif'),
 			'placeholder' 	=> __('example: 1-2 days', 'jb-sif'),
-			'value'			=> get_post_meta( $product_object->get_id(), '_sif_ships_in', true ),
+			'value'			=> get_post_meta( $product_object->get_id(), '_sif_ships_in', true ),	// Pre-fill any values that have already been saved.
 			'description'   => __( 'Add a "Ships in X" message below the Product Meta on the single-product page.', 'jb-sif'),
 			'desc_tip'		=> true
 		];
@@ -27,7 +27,7 @@ function print_admin_field() {
 	}
 }
 
-add_action( 'woocommerce_product_options_shipping', 'JB_SIF\print_admin_field');
+add_action( 'woocommerce_product_options_shipping', 'JB\SIF\print_admin_field');
 
 
 function save( $post_id ) {
@@ -40,7 +40,7 @@ function save( $post_id ) {
 	update_post_meta( $post_id, '_sif_ships_in', sanitize_text_field( $_POST['sif_ships_in'] ) );
 
 }
-add_action( 'woocommerce_process_product_meta_simple', 'JB_SIF\save' );
+add_action( 'woocommerce_process_product_meta_simple', 'JB\SIF\save' );
 
 
 
@@ -56,4 +56,4 @@ function print_output() {
 	<?php endif;
 
 }
-add_action( 'woocommerce_single_product_summary', 'JB_SIF\print_output', 45 );
+add_action( 'woocommerce_single_product_summary', 'JB\SIF\print_output', 45 );
